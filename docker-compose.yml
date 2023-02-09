@@ -11,10 +11,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - app
-    depends_on:
-      - mongo
-      - mongo-express
+      - net-app
 
   mongo:
     image: mongo
@@ -23,7 +20,7 @@ services:
         - .docker-volumes/mongo:/data/db
     restart: always
     networks:
-      - app
+      - net-app
 
   mongo-express:
     image: mongo-express
@@ -37,8 +34,8 @@ services:
     depends_on:
       - mongo
     networks:
-      - app
+      - net-app
 
 networks:
-   app-doc:
+   net-app:
      driver: bridge
